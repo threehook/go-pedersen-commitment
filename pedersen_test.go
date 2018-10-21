@@ -1,4 +1,4 @@
-package go_pedersen_commitment
+package pedersen
 
 import (
 	"github.com/bwesterb/go-ristretto"
