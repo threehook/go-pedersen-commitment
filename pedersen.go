@@ -5,11 +5,8 @@ import (
 	"math/big"
 )
 
-var p25519 big.Int
-
-func init() {
-	p25519.SetString("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffed", 16)
-}
+// The order of the base point is 2^252 + 27742317777372353535851937790883648493.
+var n25519, _ = new(big.Int).SetString("7237005577332262213973186563042994240857116359379907606001950938285454250989", 10)
 
 // Commit to a value x
 // H - Random secondary point on the curve
@@ -49,7 +46,7 @@ func SubPrivately(H *ristretto.Point, rX, rY *ristretto.Scalar, vX, vY *big.Int)
 	var vDif big.Int
 	rDif.Sub(rX, rY)
 	vDif.Sub(vX, vY)
-	vDif.Mod(&vDif, &p25519)
+	vDif.Mod(&vDif, n25519)
 
 	var vScalar ristretto.Scalar
 	var rPoint ristretto.Point
