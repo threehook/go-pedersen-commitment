@@ -44,7 +44,7 @@ func Sub(cX, cY *ristretto.Point) ristretto.Point {
 func SubPrivately(H *ristretto.Point, rX, rY *ristretto.Scalar, vX, vY *big.Int) ristretto.Point {
 	var rDif ristretto.Scalar
 	var vDif big.Int
-	rDif.Sub(rX, rY)
+	rDif.Sub(rY, rX)
 	vDif.Sub(vX, vY)
 	vDif.Mod(&vDif, n25519)
 

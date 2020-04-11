@@ -26,7 +26,7 @@ func TestCommitToSuccess(t *testing.T) {
 	var aC2 ristretto.Point
 	aC2.Sub(&aC1, &tC)
 
-	checkAC2 := SubPrivately(&H, &rY, &rX, ten, five)
+	checkAC2 := SubPrivately(&H, &rX, &rY, ten, five)
 	assert.True(t, checkAC2.Equals(&aC2), "Should be equal")
 }
 
@@ -52,6 +52,6 @@ func TestCommitToFails(t *testing.T) {
 	// Create different (and wrong) binding factors
 	rX.Rand()
 	rY.Rand()
-	checkAC2 := SubPrivately(&H, &rY, &rX, ten, five)
+	checkAC2 := SubPrivately(&H, &rX, &rY, ten, five)
 	assert.False(t, checkAC2.Equals(&aC2), "Should not be equal")
 }
